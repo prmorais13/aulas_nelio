@@ -39,7 +39,16 @@ public class Aula111 {
 			System.out.print("Data de saída (DD/MM/YYYY): ");
 			saida = sdf.parse(sc.next());
 			
-			Date agora = new Date();
+			String error = reserva.atualizaDatas(entrada, saida);
+			if (error != null) {
+				System.out.println("Erro na reserva: " + error);
+			}
+			else {
+				System.out.print("Reserva: " + reserva.toString());
+			}
+		}
+			
+/*			Date agora = new Date();
 			if (entrada.before(agora) || saida.before(agora)) {
 				System.out.println("Erro na reserva: As datas para atualização devem ser datas futuras.");
 			}
@@ -49,9 +58,7 @@ public class Aula111 {
 			else {		
 				reserva.atualizaDatas(entrada, saida);		
 				System.out.print("Reserva: " + reserva.toString());
-			}
-
-		}
+			}*/
 		
 		sc.close();
 				
