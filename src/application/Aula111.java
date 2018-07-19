@@ -5,28 +5,26 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-import entities.models.aula111.Reserva;
+import model.aula111.Reserva;
+import model.exception.ExcecaoDominio;
 
 public class Aula111 {
 
-	public static void main(String[] args) throws ParseException {
+	public static void main(String[] args) {
 		
 		Scanner sc = new Scanner(System.in);
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		
-		System.out.print("Número do quarto: ");
-		int numQuarto = sc.nextInt();
-		
-		System.out.print("Data de entrada (DD/MM/YYYY): ");
-		Date entrada = sdf.parse(sc.next());
-		
-		System.out.print("Data de saída (DD/MM/YYYY): ");
-		Date saida = sdf.parse(sc.next());
-		
-		if (!saida.after(entrada)) {
-			System.out.println("Erro na reserva: A data de saída deve ser superior a data de entrada.");
-		}
-		else {
+		try {
+			System.out.print("Número do quarto: ");
+			int numQuarto = sc.nextInt();
+			
+			System.out.print("Data de entrada (DD/MM/YYYY): ");
+			Date entrada = sdf.parse(sc.next());
+			
+			System.out.print("Data de saída (DD/MM/YYYY): ");
+			Date saida = sdf.parse(sc.next());
+			
 			Reserva reserva = new Reserva(numQuarto, entrada, saida);
 			System.out.println("Reserva: " + reserva.toString());
 			
@@ -39,26 +37,18 @@ public class Aula111 {
 			System.out.print("Data de saída (DD/MM/YYYY): ");
 			saida = sdf.parse(sc.next());
 			
-			String error = reserva.atualizaDatas(entrada, saida);
-			if (error != null) {
-				System.out.println("Erro na reserva: " + error);
-			}
-			else {
-				System.out.print("Reserva: " + reserva.toString());
-			}
+			reserva.atualizaDatas(entrada, saida);
+			System.out.print("Reserva: " + reserva.toString());
 		}
-			
-/*			Date agora = new Date();
-			if (entrada.before(agora) || saida.before(agora)) {
-				System.out.println("Erro na reserva: As datas para atualização devem ser datas futuras.");
-			}
-			else if (!saida.after(entrada)) {
-				System.out.println("Erro na reserva: A data de saída deve ser superior a data de entrada.");
-			}
-			else {		
-				reserva.atualizaDatas(entrada, saida);		
-				System.out.print("Reserva: " + reserva.toString());
-			}*/
+		catch (ParseException e) {
+			System.out.println("Formato de data inválido!");
+		}
+		catch (ExcecaoDominio e) {
+			System.out.println("Erro na reserva: " + e.getMessage());
+		}
+		catch (RuntimeException e) {
+			System.out.println("Erro inesperado! ");
+		}
 		
 		sc.close();
 				
