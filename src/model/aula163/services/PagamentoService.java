@@ -6,9 +6,8 @@ public class PagamentoService {
 		return valor += valor * 0.02;
 	}
 	
-	public Double juroMensal(Double valor, int prestacao) {
-		valor += valor * 0.01 * prestacao;
-		//valor += valor * 0.02;
+	public Double juroMensal(Double valor, int parcela) {
+		valor += valor * 0.01 * parcela;
 		return valor;
 	}
 }

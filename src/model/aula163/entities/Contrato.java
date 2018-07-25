@@ -1,12 +1,14 @@
 package model.aula163.entities;
 
 import java.util.Date;
+import java.util.List;
 
 public class Contrato {
 	private Integer numero;
 	private Date data;
 	private Double valorTotal;
-	private Parcelamento parcelamento;
+	//private Parcelamento parcelamento;
+	private List<Parcelamento> parcelamento;
 	
 	public Contrato() {
 		
@@ -42,12 +44,21 @@ public class Contrato {
 		this.valorTotal = valorTotal;
 	}
 
-	public Parcelamento getParcelamento() {
+	public List<Parcelamento> getParcelamento() {
+		return parcelamento;
+	}
+
+	public void setParcelamento(List<Parcelamento> parcelamento) {
+		this.parcelamento = parcelamento;
+	}
+
+	
+/*	public Parcelamento getParcelamento() {
 		return parcelamento;
 	}
 
 	public void setParcelamento(Parcelamento parcelamento) {
 		this.parcelamento = parcelamento;
-	}
+	}*/
 	
 }
