@@ -1,5 +1,6 @@
 package model.aula163.entities;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -8,7 +9,7 @@ public class Contrato {
 	private Date data;
 	private Double valorTotal;
 	//private Parcelamento parcelamento;
-	private List<Parcelamento> parcelamento;
+	private List<Parcelamento> parcelamentos = new ArrayList<>();
 	
 	public Contrato() {
 		
@@ -44,16 +45,23 @@ public class Contrato {
 		this.valorTotal = valorTotal;
 	}
 
-	public List<Parcelamento> getParcelamento() {
-		return parcelamento;
+	public List<Parcelamento> getParcelamentos() {
+		return parcelamentos;
 	}
 
-	public void setParcelamento(List<Parcelamento> parcelamento) {
+	public void addLista(Parcelamento parcelamento) {
+		this.parcelamentos.add(parcelamento);
+	}
+	
+	public void removeLista(Parcelamento parcelamento) {
+		this.parcelamentos.remove(parcelamento);
+	}
+	
+	/*public void setParcelamento(List<Parcelamento> parcelamento) {
 		this.parcelamento = parcelamento;
 	}
 
-	
-/*	public Parcelamento getParcelamento() {
+	public Parcelamento getParcelamento() {
 		return parcelamento;
 	}
 

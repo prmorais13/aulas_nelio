@@ -1,10 +1,13 @@
 package model.aula163.entities;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Parcelamento {
 	private Date dataVencimento;
 	private Double valor;
+	
+	private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	
 	public Parcelamento() {
 		
@@ -30,6 +33,14 @@ public class Parcelamento {
 	public void setValor(Double valor) {
 		this.valor = valor;
 	}
+
+	@Override
+	public String toString() {
+		return sdf.format(getDataVencimento())
+				+ " - "
+				+ getValor();
+	}
+	
 	
 	
 }

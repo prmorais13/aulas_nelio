@@ -43,11 +43,8 @@ public class ProgramAula163 {
 		System.out.println();
 		System.out.println("PRESTAÇÕES:");
 		
-		for (Parcelamento parcelamento : contrato.getParcelamento()) {
-			System.out.println(
-					sdf.format(parcelamento.getDataVencimento())
-					+ " - "
-					+ parcelamento.getValor());
+		for (Parcelamento parcelamento : contrato.getParcelamentos()) {
+			System.out.println(parcelamento);
 		}
 	
 		/*for (int i = 1; i <= prestacao; i++) {
