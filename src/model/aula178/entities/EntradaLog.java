@@ -1,13 +1,15 @@
-package model.aula180.entities;
+package model.aula178.entities;
 
-public class Produto {
+import java.util.Date;
+
+public class EntradaLog {
 	
 	private String nome;
-	private Double preco;
+	private Date data;
 	
-	public Produto(String nome, Double preco) {
+	public EntradaLog(String nome, Date data) {
 		this.nome = nome;
-		this.preco = preco;
+		this.data = data;
 	}
 
 	public String getNome() {
@@ -18,12 +20,12 @@ public class Produto {
 		this.nome = nome;
 	}
 
-	public Double getPreco() {
-		return preco;
+	public Date getData() {
+		return data;
 	}
 
-	public void setPreco(Double preco) {
-		this.preco = preco;
+	public void setData(Date data) {
+		this.data = data;
 	}
 
 	@Override
@@ -31,7 +33,6 @@ public class Produto {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		result = prime * result + ((preco == null) ? 0 : preco.hashCode());
 		return result;
 	}
 
@@ -43,22 +44,13 @@ public class Produto {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Produto other = (Produto) obj;
+		EntradaLog other = (EntradaLog) obj;
 		if (nome == null) {
 			if (other.nome != null)
 				return false;
 		} else if (!nome.equals(other.nome))
 			return false;
-		if (preco == null) {
-			if (other.preco != null)
-				return false;
-		} else if (!preco.equals(other.preco))
-			return false;
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "nome: " + nome + ", preco: " + String.format("%.2f", preco);
-	}
 }
