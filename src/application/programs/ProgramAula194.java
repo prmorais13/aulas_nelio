@@ -3,7 +3,6 @@ package application.programs;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
@@ -21,10 +20,6 @@ public class ProgramAula194 {
 		System.out.print("Entre com o path do arquivo: ");
 		String path = sc.nextLine();
 		
-		System.out.print("Entre com o salário: ");
-		double salarioTeto = sc.nextDouble();
-		//System.out.println(String.format("%.2f", salarioTeto));
-		
 		try (BufferedReader br = new BufferedReader(new FileReader(path))) {
 			
 			List<Funcionario> lista = new ArrayList<>();
@@ -34,23 +29,19 @@ public class ProgramAula194 {
 			while (linha != null) {
 				String[] campos = linha.split(",");
 				
-				String nome = campos[0];
-				String email = campos[1];
-				double salario = Double.parseDouble(campos[2]);
-				
-				Funcionario funcionario = new Funcionario(nome, email, salario);
-				
+				Funcionario funcionario = new Funcionario(campos[0], campos[1], Double.parseDouble(campos[2]));		
 				lista.add(funcionario);
 				
 				linha = br.readLine();
 			}
 			
-			Comparator<String> comp = (email1, email2) -> email1.toUpperCase().compareTo(email2.toUpperCase());
+			System.out.print("Entre com o salário: ");
+			double salarioTeto = sc.nextDouble();
 			
 			List<String> nomes = lista.stream()
 					.filter(f -> f.getSalario() > salarioTeto)
 					.map(f -> f.getEmail())
-					.sorted(comp)
+					.sorted()
 					.collect(Collectors.toList());
 			
 			System.out.println("Email de funcionário com salário maior que " + String.format("%.2f", salarioTeto) + ":");
@@ -66,8 +57,7 @@ public class ProgramAula194 {
 		} catch (Exception e) {
 			System.out.println("Erro: " + e.getMessage());
 		}
-		
-		
+			
 		sc.close();
 	}
 
